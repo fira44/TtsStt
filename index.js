@@ -2,11 +2,9 @@ const { ElevenLabsClient } = require('@elevenlabs/elevenlabs-js');
 require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
-const fs = require('fs');
-const axios = require('axios');
-const path = require('path');
+const fs = require('fs').promises;
 const cors = require('cors');
-const FormData = require('form-data');
+
 
 const app = express();
 app.use(cors());
@@ -37,7 +35,7 @@ app.post('/process-audio', upload.single('audio'), async(req,res) => {
     const inputPath = req.file.path;
 
     const sttResponse = await elevenlabs.speechToText.convert({
-        file : fs.createReadStream(inputPath),
+        file : require('fs').createReadStream(inputPath),
         modelId: "scribe_v1",
         languageCode : "tr"
     })

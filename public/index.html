@@ -36,7 +36,7 @@
       };
 
       mediaRecorder.onstop = async () => {
-        statusText.textContent = '⏳ Sending to server...';
+        statusText.textContent = 'Sending to server...';
         startBtn.disabled = false;
         stopBtn.disabled = true;
 
@@ -53,7 +53,7 @@
         console.log(arrayBuffer)
         const audioBlob = new Blob([arrayBuffer], { type: 'audio/mp3' });
         audioPlayer.src = URL.createObjectURL(audioBlob);
-        statusText.textContent = '✅ Response received. Playing audio.';
+        statusText.textContent = 'Response received. Playing audio.';
         audioPlayer.play();
       };
 
